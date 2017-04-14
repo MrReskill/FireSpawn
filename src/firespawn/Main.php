@@ -20,14 +20,18 @@ class Main extends PluginBase implements Listener{
 	public function onEnable(){
 	
 	@mkdir($this->getDataFolder());	
-    $this->saveDefaultConfig();
+        $this->saveDefaultConfig();
 	$this->getLogger()->info(TF::GREEN."FireSpawn loaded by SkySeven!");
 	$this->getServer()->getPluginManager()->registerEvents($this, $this);
+	$config = new Config($this->getDataFolder()."hub.yml",Config::YAML);
+	$this->getServer()->loadLevel($config->get('Level');
 	}
 
 	public function onDisable(){
-	
-    }
+		$this->getLogger()->info(TF::RED.'FireSpawn a été désactivé');
+		$config = new Config($this->getDataFolder()."hub.yml",Config::YAML);
+		$config->save();
+	}
 	
 	public function onJoin(PlayerLoginEvent $event){
 		
